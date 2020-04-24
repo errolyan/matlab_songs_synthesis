@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!-- XML file produced from file: morphingWithSTRAIGHTe.tex
+     using Hyperlatex v 2.8 (c) Otfried Cheong
+     on Emacs 21.2.1, Mon Nov  7 05:20:37 2005 -->
+<head>
+<title>Morphing with STRAIGHT -- Morphing without side information</title>
+
+<style type="text/css">
+.maketitle { align : center }
+div.abstract { margin-left: 20%; margin-right: 10%; }
+h3.abstract  { align : center }
+div.verse, div.quote, div.quotation {
+  margin-left : 10%; 
+  margin-right : 10%;
+}
+dt {font-weight: bold}
+</style>
+</head>
+<body bgcolor="#ffffe6">
+<table width="100%" cellpadding="0" cellspacing="2"><tr>
+<td bgcolor="#99ccff"><a href="morphingWithSTRAIGHTe_19.html"><img border="0" alt="Morphing in STRAIGHT parameter domain without side information" src="next.png"/></a></td><td bgcolor="#99ccff"><a href="morphingWithSTRAIGHTe_17.html"><img border="0" alt="Step by step implementation of morphing function: I" src="up.png"/></a></td><td bgcolor="#99ccff"><img alt="" src="blank.png"/></td><td align="center" bgcolor="#99ccff" width="100%"><b>Morphing without side information</b></td><td bgcolor="#99ccff" align="center"><a href="morphingWithSTRAIGHTe_28.html">Contents</a></td><td bgcolor="#99ccff" align="center"><a href="morphingWithSTRAIGHTe_27.html">Index</a></td></tr></table>
+<h2>Morphing without side information</h2>
+<p>It is worthwhile to check that simple waveform superposition does not
+perform desired morphing function.
+A superposition function <tt>waveformMorphing</tt> is designed to
+mix waveform information of two M-objects according to the
+given amount r.
+In this case, the waveform of the first M-object is weighted by (1-r) and
+that of the second M-object is weighted by r and then added together.
+The following commands does this operation.
+</p><pre>
+mixedWave = waveformMorphing(neutralHai,angryHai,0.5);
+displayMobject(mixedWave,'waveform','mixedWave');
+</pre>
+<p>Please note that the output of <tt>waveformMorphing</tt> is also
+a M-object to maintain compatibility.
+<a href="mixedWave.wav">The morphed signal by this procedure</a>
+sounds like two persons are speaking at the same time.
+This is not the desired behavior of auditory morphing.
+</p><div class="quote"><p>
+<img src="mixwave.png"  /></p></div>
+<hr /><address>Hideki Kawahara, November 7, 2005</address><br />
+<table width="100%" cellpadding="0" cellspacing="2"><tr>
+<td bgcolor="#99ccff"><a href="morphingWithSTRAIGHTe_19.html"><img border="0" alt="Morphing in STRAIGHT parameter domain without side information" src="next.png"/></a></td><td bgcolor="#99ccff"><a href="morphingWithSTRAIGHTe_17.html"><img border="0" alt="Step by step implementation of morphing function: I" src="up.png"/></a></td><td bgcolor="#99ccff"><img alt="" src="blank.png"/></td><td align="center" bgcolor="#99ccff" width="100%"><b>Morphing without side information</b></td><td bgcolor="#99ccff" align="center"><a href="morphingWithSTRAIGHTe_28.html">Contents</a></td><td bgcolor="#99ccff" align="center"><a href="morphingWithSTRAIGHTe_27.html">Index</a></td></tr></table></body></html>

@@ -1,0 +1,164 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Comparison of the new F0 extractor and the defaul method</TITLE>
+<META NAME="description" CONTENT="Comparison of the new F0 extractor and the defaul method">
+<META NAME="keywords" CONTENT="gettingStartedV40_006b">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="gettingStartedV40_006b.css">
+
+<LINK REL="previous" HREF="node8.html">
+<LINK REL="up" HREF="node8.html">
+<LINK REL="next" HREF="node10.html">
+</HEAD>
+
+<BODY bgcolor=#ffffe7>
+<HR>
+<A NAME="tex2html208"
+  HREF="node10.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html202"
+  HREF="node8.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html198"
+  HREF="node8.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html204"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html206"
+  HREF="node32.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> <BR>
+<B> Next:</B> <A NAME="tex2html209"
+  HREF="node10.html">Default analysis parameter of</A>
+<B>Up:</B> <A NAME="tex2html203"
+  HREF="node8.html">Using a new F0</A>
+<B> Previous:</B> <A NAME="tex2html199"
+  HREF="node8.html">Using a new F0</A>
+<BR> <P>
+
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00061000000000000000">
+Comparison of the new F0 extractor and the defaul method</A>
+</H2>
+This section shows how the new F0 extractor fixes problems found in
+processing expressive speech using the default STRAIGHT F0 extractor.
+The following script performs STRAIGHT analysis and synthesis using
+both the default F0 extractor and the new F0 extractor.
+
+<P>
+<PRE>
+[x,fs]=wavread('../Sample/em001c1013a.wav');
+[f0raw,vuv,auxouts,prmouts]=MulticueF0v14(x,fs);
+[ap,analysisParams]=exstraightAPind(x,fs,f0raw);
+[n3sgram,prmP]=exstraightspec(x,f0raw.*vuv,fs);
+[f0rawFixp,apFixp,analysisParams]=exstraightsource(x,fs);
+[n3sgramFixp,prmP]=exstraightspec(x,f0rawFixp,fs);
+[sy,prmS] = exstraightsynth(f0raw.*vuv,n3sgram,ap,fs);
+[syFixp,prmS] = exstraightsynth(f0rawFixp,n3sgramFixp,apFixp,fs);
+</PRE>
+
+<P>
+The original and synthesized sounds are linked below.
+(List of links only accessible in the HTML version of this document.)
+
+<HR>
+<UL>
+<LI><A HREF="sounds/em001c1013a.wav">Original expressive speech (excited)</A>
+<LI><A HREF="sounds/synWithDefaultF0.wav">Re-synthesized expressive speech using the default F0 extractor</A>
+<LI><A HREF="sounds/synWithNewF0.wav">Re-synthesized expressive speech using the new F0 extractor</A>
+</UL>
+<HR>
+
+<P>
+The extracted F0 of the speech is shown in Figure&nbsp;<A HREF="#newAndOldF0">1</A>.
+The red line shows the F0 trajectory extracted by the default extractor.
+The blue line shows the F0 trajectory extracted by the new F0 extractor.
+As you can see the new F0 extractor provides non-zero trajectory even in unvoiced or silent segments.
+The voiced/unvoiced distinction information is given in the binary value 'vuv'.
+The segments detected as voiced are represented as black boardered boxes in Figure&nbsp;<A HREF="#newAndOldF0">1</A>.
+
+<DIV ALIGN="CENTER"><A NAME="newAndOldF0"></A><A NAME="110"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 1:</STRONG>
+F0 trajectories extracted by the new and the default methods</CAPTION>
+<TR><TD><IMG
+ WIDTH="545" HEIGHT="426" BORDER="0"
+ SRC="img1.png"
+ ALT="\begin{figure}\begin{center}
+\psbox[size=12cm]{images/newAndOldF0.eps}\end{center}\end{figure}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+The default F0 trajectory has several glitches in voiced portion.
+Those glitches are disappeared in the new F0 trajectory.
+Especially glitch around 800 ms produces noticeable defect in resynthesized speech by the default method.
+The following figure shows waveforms around 800 ms.
+From top to bottom, the default resynthesis, the new resynthesis and the original waveforms are displayed.
+
+<DIV ALIGN="CENTER"><A NAME="waveformsComp"></A><A NAME="117"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 2:</STRONG>
+Resynthesized and the original waveforms. Top to bottom:
+default, new and the original.</CAPTION>
+<TR><TD><IMG
+ WIDTH="543" HEIGHT="368" BORDER="0"
+ SRC="img2.png"
+ ALT="\begin{figure}\begin{center}
+\psbox[size=12cm]{images/waveformsComp.epsf}\end{center}\end{figure}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+<BR> <HR>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html210"
+  HREF="node10.html">Default analysis parameter of the new F0 extractor (*)</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+<A NAME="tex2html208"
+  HREF="node10.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html202"
+  HREF="node8.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html198"
+  HREF="node8.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html204"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html206"
+  HREF="node32.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> <BR>
+<B> Next:</B> <A NAME="tex2html209"
+  HREF="node10.html">Default analysis parameter of</A>
+<B>Up:</B> <A NAME="tex2html203"
+  HREF="node8.html">Using a new F0</A>
+<B> Previous:</B> <A NAME="tex2html199"
+  HREF="node8.html">Using a new F0</A>
+
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Hideki Kawahara <BR>
+2007-05-05</I>
+</ADDRESS>
+</BODY>
+</HTML>

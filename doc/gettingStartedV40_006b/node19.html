@@ -1,0 +1,193 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Parameter: groupDelayStandardDeviation (*)</TITLE>
+<META NAME="description" CONTENT="Parameter: groupDelayStandardDeviation (*)">
+<META NAME="keywords" CONTENT="gettingStartedV40_006b">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="gettingStartedV40_006b.css">
+
+<LINK REL="next" HREF="node23.html">
+<LINK REL="previous" HREF="node18.html">
+<LINK REL="up" HREF="node18.html">
+<LINK REL="next" HREF="node20.html">
+</HEAD>
+
+<BODY bgcolor=#ffffe7>
+<HR>
+<A NAME="tex2html363"
+  HREF="node20.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html357"
+  HREF="node18.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html351"
+  HREF="node18.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html359"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html361"
+  HREF="node32.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> <BR>
+<B> Next:</B> <A NAME="tex2html364"
+  HREF="node20.html">groupDelayStandardDeviation=0.5 ms (default )</A>
+<B>Up:</B> <A NAME="tex2html358"
+  HREF="node18.html">Group delay parameters (*)</A>
+<B> Previous:</B> <A NAME="tex2html352"
+  HREF="node18.html">Group delay parameters (*)</A>
+<BR> <P>
+
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION00091100000000000000">
+Parameter: groupDelayStandardDeviation (*)</A>
+</H3>
+The default value is 0.5 ms.
+This determines the amount of the group delay dispersion
+in terms of its standard deviation on the frequency axis.
+The effects of manipulating this parameter is shown in the
+following plots.
+
+<P>
+The first example shows the excitation source signal
+when this parameter is set to 0.
+The source and the spectral information (<TT>f0raw,n3sgram,ap</TT>) are
+extracted from the vowel sequence used in the previous 
+sections (<TT>vaiueo2d.wav</TT>).
+(A small trick is used here to observe the excitation source signal.
+All elements of the matrix variable <TT>n3sgram</TT> are set to a positive constant value.
+All elements of the matrix variable <TT>ap</TT> are set to a small
+(-60 for example) constant value.
+)
+
+<P>
+The excitation source signal for 0 ms group delay dispersion is
+calculated by calling synthesis function with
+the field <TT>groupDelayStandardDeviation</TT> to be set to a
+positive small value.
+The other parameters are set default.
+<PRE>prminS.groupDelayStandardDeviation=0.000001;
+sy0 = exstraightsynth(f0raw,n3sgram*0+100,ap*0-80,fs,prminS);
+</PRE>
+
+<P>
+The excitation source signal and the spectrogram are
+displayed by using the following commands.
+Please note that the default frame update interval is 1ms.
+The <TT>specgram</TT> function of Matlab system is used to
+calculate the spectrogram.
+<PRE>figure;
+plot((1:length(syZ))/fs*1000,sy0);
+axis([650 700 -30000 45000]);
+set(gca,'fontsize',16);
+xlabel('time (ms)');title('delsp=0, cornf=4000');
+figure;
+nsgnnZ=specgram(syZ,512,fs,90,85);
+[nr nc]=size(nsgnnZ);
+imagesc([0 nc*5000/fs],[0 fs/2],max(45,dB(abs(nsgnnZ))));axis('xy')
+axis([650 700 0 fs/2])
+xlabel('time (ms)');ylabel('frequency (Hz)'); title('delsp=0, cornf=4000');
+</PRE>
+
+<P>
+The following plot shows the excitation source waveform around
+the area where the fundamental frequency goes down to 75Hz.
+Small blobs close to excitation pulses are side effects of
+the linear group delay manipulation for implementing 
+sub-sampling accuracy in pulse interval control.
+The cause of the side effects is intuitively understood by the
+nest spectrographic display of the same signal.
+
+<DIV ALIGN="CENTER"><A NAME="wv0"></A><A NAME="180"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 4:</STRONG>
+Waveform of the excitation source signal with 0 ms group delay dispersion.</CAPTION>
+<TR><TD><IMG
+ WIDTH="543" HEIGHT="478" BORDER="0"
+ SRC="img4.png"
+ ALT="\begin{figure}\begin{center}
+\psbox[size=12cm]{images/wv0.epsf}\end{center}\end{figure}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+The following plot is a spectrographic display of the same signal.
+The sampling frequency of the signal is 22,050Hz, in this case.
+Please note that group delay represents temporal energy centroid
+at each frequency.
+The pseudo color representation shows high energy area using red to
+brown and shows low energy area using deep blue.
+Roughly speaking, the red to brown area shows the shape of group delay function.
+Taking into account of this interpretation, it is easy to see that
+the spectrogram illustrates that the blobs are due to bending of group delay
+close to the Nyquist frequency.
+
+<DIV ALIGN="CENTER"><A NAME="sg0"></A><A NAME="187"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 5:</STRONG>
+Spectrogram of the excitation source signal with 0 ms group delay dispersion.</CAPTION>
+<TR><TD><IMG
+ WIDTH="544" HEIGHT="431" BORDER="0"
+ SRC="img5.png"
+ ALT="\begin{figure}\begin{center}
+\psbox[size=12cm]{images/sg0.eps}\end{center}\end{figure}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+
+<BR> <HR>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html365"
+  HREF="node20.html">groupDelayStandardDeviation=0.5 ms (default )</A>
+<LI><A NAME="tex2html366"
+  HREF="node21.html">groupDelayStandardDeviation=2 ms</A>
+<LI><A NAME="tex2html367"
+  HREF="node22.html">groupDelayStandardDeviation=6 ms</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+<A NAME="tex2html363"
+  HREF="node20.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html357"
+  HREF="node18.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html351"
+  HREF="node18.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html359"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html361"
+  HREF="node32.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> <BR>
+<B> Next:</B> <A NAME="tex2html364"
+  HREF="node20.html">groupDelayStandardDeviation=0.5 ms (default )</A>
+<B>Up:</B> <A NAME="tex2html358"
+  HREF="node18.html">Group delay parameters (*)</A>
+<B> Previous:</B> <A NAME="tex2html352"
+  HREF="node18.html">Group delay parameters (*)</A>
+
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Hideki Kawahara <BR>
+2007-05-05</I>
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Parameter: groupDelayRandomizeCornerFrequency (*)</TITLE>
+<META NAME="description" CONTENT="Parameter: groupDelayRandomizeCornerFrequency (*)">
+<META NAME="keywords" CONTENT="gettingStartedV40_006b">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="gettingStartedV40_006b.css">
+
+<LINK REL="next" HREF="node24.html">
+<LINK REL="previous" HREF="node19.html">
+<LINK REL="up" HREF="node18.html">
+<LINK REL="next" HREF="node24.html">
+</HEAD>
+
+<BODY bgcolor=#ffffe7>
+<HR>
+<A NAME="tex2html420"
+  HREF="node24.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html414"
+  HREF="node18.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html408"
+  HREF="node22.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html416"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html418"
+  HREF="node32.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> <BR>
+<B> Next:</B> <A NAME="tex2html421"
+  HREF="node24.html">Parameter: groupDelaySpatialBandWidth (*)</A>
+<B>Up:</B> <A NAME="tex2html415"
+  HREF="node18.html">Group delay parameters (*)</A>
+<B> Previous:</B> <A NAME="tex2html409"
+  HREF="node22.html">groupDelayStandardDeviation=6 ms</A>
+<BR> <P>
+
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION00091200000000000000">
+Parameter: groupDelayRandomizeCornerFrequency (*)</A>
+</H3>
+The default value of this parameter is 4000Hz.
+This parameter sets the boundary frequency between
+the randomized group delay region and the constant group delay region.
+
+<P>
+The same speech example is used here and the
+same conditions are assumed.
+The following commands modifies the boundary frequency
+value to 8000Hz by setting the field
+<TT>groupDelayRandomizeCornerFrequency</TT>.
+Please note that the 2 ms group delay dispersing is used 
+here (instead of using its default 0.5 ms) 
+ to enhance visual salience of the effect of this parameter.
+<PRE>prminS.groupDelayStandardDeviation=2;
+prminS.groupDelayRandomizeCornerFrequency=8000;
+sy8000 = exstraightsynth(f0raw,n3sgram*0+100,ap*0-80,fs,prminS);
+</PRE>
+
+<P>
+The effect is not clearly visible in the waveform representation.
+
+<DIV ALIGN="CENTER"><A NAME="wv8000"></A><A NAME="243"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 12:</STRONG>
+Waveform of the excitation source signal with the 8000Hz boundary frequency.</CAPTION>
+<TR><TD><IMG
+ WIDTH="544" HEIGHT="476" BORDER="0"
+ SRC="img12.png"
+ ALT="\begin{figure}\begin{center}
+\psbox[size=12cm]{images/wv8000.eps}\end{center}\end{figure}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+The effect is salient in the spectrogram.
+The boundary between straight line and the randomized pattern is 
+clearly moved up to 8000Hz.
+
+<DIV ALIGN="CENTER"><A NAME="sg8000"></A><A NAME="250"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 13:</STRONG>
+Spectrogram of the excitation source signal with the 8000Hz boundary frequency.</CAPTION>
+<TR><TD><IMG
+ WIDTH="544" HEIGHT="431" BORDER="0"
+ SRC="img13.png"
+ ALT="\begin{figure}\begin{center}
+\psbox[size=12cm]{images/sg8000.eps}\end{center}\end{figure}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+
+<HR>
+<A NAME="tex2html420"
+  HREF="node24.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html414"
+  HREF="node18.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html408"
+  HREF="node22.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html416"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html418"
+  HREF="node32.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> <BR>
+<B> Next:</B> <A NAME="tex2html421"
+  HREF="node24.html">Parameter: groupDelaySpatialBandWidth (*)</A>
+<B>Up:</B> <A NAME="tex2html415"
+  HREF="node18.html">Group delay parameters (*)</A>
+<B> Previous:</B> <A NAME="tex2html409"
+  HREF="node22.html">groupDelayStandardDeviation=6 ms</A>
+
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Hideki Kawahara <BR>
+2007-05-05</I>
+</ADDRESS>
+</BODY>
+</HTML>

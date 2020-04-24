@@ -1,0 +1,223 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Aperiodicity Index</TITLE>
+<META NAME="description" CONTENT="Aperiodicity Index">
+<META NAME="keywords" CONTENT="gettingStartedV40_006b">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="gettingStartedV40_006b.css">
+
+<LINK REL="previous" HREF="node30.html">
+<LINK REL="up" HREF="node30.html">
+<LINK REL="next" HREF="node32.html">
+</HEAD>
+
+<BODY bgcolor=#ffffe7>
+<HR>
+<A NAME="tex2html526"
+  HREF="node32.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html520"
+  HREF="node30.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html516"
+  HREF="node30.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html522"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html524"
+  HREF="node32.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> <BR>
+<B> Next:</B> <A NAME="tex2html527"
+  HREF="node32.html">Index</A>
+<B>Up:</B> <A NAME="tex2html521"
+  HREF="node30.html">Notes on STRAIGHT parameters</A>
+<B> Previous:</B> <A NAME="tex2html517"
+  HREF="node30.html">Notes on STRAIGHT parameters</A>
+<BR> <P>
+
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION000131000000000000000">
+Aperiodicity Index</A>
+</H2>
+STRAIGHT has two modes of controlling excitation source; 
+group delay manipulation and mixed mode excitation.
+The aperiodicity index controls the noise to total energy ratio using
+pulse plus noise excitation source.
+The following schematic diagram shows steps to calculate the aperiodicity index.
+
+<DIV ALIGN="CENTER"><A NAME="aoeriodicityEstimation"></A><A NAME="331"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 18:</STRONG>
+How to estimate aperiodicity index. part1.</CAPTION>
+<TR><TD><IMG
+ WIDTH="226" HEIGHT="407" BORDER="0"
+ SRC="img19.png"
+ ALT="\begin{figure}\begin{center}
+\psbox[size=5cm]{images/aoeriodicityEstimation.epsf}\end{center}\end{figure}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+The following diagram illustrates how the envelope extraction for estimating the raw estimate of 
+the aperiodicity index.
+The value of the index (ap) is conceptually a dB difference between lower envelope (Le)
+and upper envelope (Ue). (ap = Le -Ue)
+
+<DIV ALIGN="CENTER"><A NAME="APindexExtraction"></A><A NAME="338"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 19:</STRONG>
+How to estimate aperiodicity index..</CAPTION>
+<TR><TD><IMG
+ WIDTH="543" HEIGHT="407" BORDER="0"
+ SRC="img20.png"
+ ALT="\begin{figure}\begin{center}
+\psbox[size=12cm]{images/APindexExtraction.epsf}\end{center}\end{figure}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+This raw estimate is then smoothed on the frequency axis based on resolution about 1 ERB
+(Equivalent Rectangular Band width. Please consult with text book on psychology of hearing.)
+The following Matlab code defines the relation between frequency (x) and ERB (y).
+<PRE>
+y = 21.4*log10(4.37e-3*x+1);
+</PRE>
+Finally the ap values are calibrated based on the calibration table that was prepared based on a 
+series of simulations using synthetic vowels.
+
+<P>
+<PRE>
+imagesc([0 794],[0 fs/2],10.0.^(ap/20));axis('xy')
+</PRE>
+The following figure is the extracted aperiodicity index using the formula above.
+The speech is a Japanese vowel sequence /aiueo/.
+This index is represented in dB.
+The value 0 dB indicates that the excitation is totally random because it 
+represents contribution from energy of random component.
+When the index is set lower than -60 dB, the excitation is effectively 
+purely periodic.
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="apforaiueo"></A><A NAME="349"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 20:</STRONG>
+Extracted aperiodicity index using the formula above.
+The speech is a Japanese vowel sequence /aiueo/.</CAPTION>
+<TR><TD><IMG
+ WIDTH="545" HEIGHT="412" BORDER="0"
+ SRC="img21.png"
+ ALT="\begin{figure}\begin{center}
+\psbox[size=12cm]{images/apforaiueo.eps}\end{center}\end{figure}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="STRsgramforaiueo"></A><A NAME="356"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 21:</STRONG>
+STRAIGHT spectrogram for the same sample.
+The speech is a Japanese vowel sequence /aiueo/.</CAPTION>
+<TR><TD><IMG
+ WIDTH="545" HEIGHT="409" BORDER="0"
+ SRC="img22.png"
+ ALT="\begin{figure}\begin{center}
+\psbox[size=12cm]{images/STRsgramforaiueo.eps}\end{center}\end{figure}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+The following Matlab command line session record shows how to modify
+the apriodicity index to control excitation source.
+<PRE>
+&gt;&gt; [x,fs,nbs,ops]=wavread('vaiueo2d.wav');
+&gt;&gt; [f0raw,ap]=exstraightsource(x,fs);
+&gt;&gt; n3sgram=exstraightspec(x(:,1),f0raw,fs);
+&gt;&gt; syOrg = exstraightsynth(f0raw,n3sgram,ap,fs);
+&gt;&gt; syApr = exstraightsynth(f0raw,n3sgram,ap*0,fs);
+&gt;&gt; syPpr = exstraightsynth(f0raw,n3sgram,ap*0-60,fs);
+&gt;&gt; [syPprD0,prmS] = exstraightsynth(f0raw,n3sgram,ap*0-60,fs);
+&gt;&gt; prmS
+
+prmS = 
+
+                spectralUpdateInterval: 1
+           groupDelayStandardDeviation: 0.5000
+            groupDelaySpatialBandWidth: 70
+    groupDelayRandomizeCornerFrequency: 4000
+              ratioToFundamentalPeriod: 0.2000
+                    ratioModeIndicator: 0
+           levelNormalizationIndicator: 1
+                        headRoomToClip: 22
+               powerCheckSegmentLength: 15
+                  timeAxisMappingTable: 1
+      fundamentalFrequencyMappingTable: 1
+             frequencyAxisMappingTable: 1
+              timeAxisStretchingFactor: 1
+                          DisplayPlots: 0
+                              lowestF0: 50
+                          statusReport: 'ok'
+
+&gt;&gt; prmS.groupDelayStandardDeviation = 0.001;
+&gt;&gt; [syPprD0,prmS] = exstraightsynth(f0raw,n3sgram,ap*0-60,fs,prmS);
+&gt;&gt; wavwrite(syOrg/32768,fs,16,'synAiueoOrg.wav');
+&gt;&gt; wavwrite(syApr/32768,fs,16,'synAiueoApr.wav');
+&gt;&gt; wavwrite(syPpr/32768,fs,16,'synAiueoPpr.wav');
+&gt;&gt; wavwrite(syPprD0/32768,fs,16,'synAiueoPprD0.wav');
+</PRE>
+Examples synthesized using these commands are linked below.
+(Links are accessible only in the HTML version of this document.)
+
+<UL>
+<LI><A HREF="sounds/synAiueoOrg.wav">Re-synthesis using the default</A>
+<LI><A HREF="sounds/synAiueoApr.wav">Re-synthesis using totally aperiodic excitation</A>
+<LI><A HREF="sounds/synAiueoPpr.wav">Re-synthesis using periodic excitation only and with group delay randomization</A>
+<LI><A HREF="sounds/synAiueoPprD0.wav">Re-synthesis using periodic excitation only and without group delay randomization</A>
+</UL>
+
+<P>
+<HR>
+<A NAME="tex2html526"
+  HREF="node32.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html520"
+  HREF="node30.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html516"
+  HREF="node30.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html522"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html524"
+  HREF="node32.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> <BR>
+<B> Next:</B> <A NAME="tex2html527"
+  HREF="node32.html">Index</A>
+<B>Up:</B> <A NAME="tex2html521"
+  HREF="node30.html">Notes on STRAIGHT parameters</A>
+<B> Previous:</B> <A NAME="tex2html517"
+  HREF="node30.html">Notes on STRAIGHT parameters</A>
+
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Hideki Kawahara <BR>
+2007-05-05</I>
+</ADDRESS>
+</BODY>
+</HTML>

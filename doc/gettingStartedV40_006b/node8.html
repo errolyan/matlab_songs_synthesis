@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Using a new F0 extractor for STRAIGHT</TITLE>
+<META NAME="description" CONTENT="Using a new F0 extractor for STRAIGHT">
+<META NAME="keywords" CONTENT="gettingStartedV40_006b">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="gettingStartedV40_006b.css">
+
+<LINK REL="next" HREF="node11.html">
+<LINK REL="previous" HREF="node6.html">
+<LINK REL="up" HREF="gettingStartedV40_006b.html">
+<LINK REL="next" HREF="node9.html">
+</HEAD>
+
+<BODY bgcolor=#ffffe7>
+<HR>
+<A NAME="tex2html194"
+  HREF="node9.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html188"
+  HREF="gettingStartedV40_006b.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html182"
+  HREF="node7.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html190"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html192"
+  HREF="node32.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> <BR>
+<B> Next:</B> <A NAME="tex2html195"
+  HREF="node9.html">Comparison of the new</A>
+<B>Up:</B> <A NAME="tex2html189"
+  HREF="gettingStartedV40_006b.html">Getting started with STRAIGHT</A>
+<B> Previous:</B> <A NAME="tex2html183"
+  HREF="node7.html">Reading and writing audio</A>
+<BR> <P>
+
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00060000000000000000"></A><A NAME="howtoUseNewF0"></A>
+<BR>
+Using a new F0 extractor for STRAIGHT
+</H1>
+A new F0 extractor using multiple F0 cues was introduced recently 
+and reported at INTERSPEECH2005&nbsp;[<A
+ HREF="node28.html#kawahara2005interspeech">5</A>].
+The new F0 extractor can be used in STRAIGHT instead of using its default F0 extractor.
+The new F0 extractor is especially useful when manipulating expressive speech,
+where irregular vocal fold vibration patterns are more frequently found.
+Please use the following steps to use this new procedure.
+
+<P>
+<B>Reading speech data from a file</B> 
+
+<P>
+This part is the same as the default procedure.
+<PRE>[x,fs]=wavread('vaiueo2d.wav');
+</PRE>
+<P>
+<B>Extracting source infromation</B>
+
+<P>
+This part should be replaced by the following procedures.
+<PRE>f0raw = MulticueF0v14(x,fs);
+</PRE>
+Then you have to calculate <A NAME="91"></A>
+aperiodicity index using the fourth routine <TT>exstraightAPind</TT>.
+<PRE> ap = exstraightAPind(x,fs,f0raw);
+</PRE>
+
+<P>
+<B>Extract spectral information</B>  
+
+<P>
+This part is the same as the default procedure.
+<PRE>n3sgram=exstraightspec(x,f0raw,fs);
+</PRE>
+<P>
+<B>Resynthesizing speech</B>  
+
+<P>
+This part is the same as the default procedure.
+<PRE>sy = exstraightsynth(f0raw,n3sgram,ap,fs);
+</PRE>
+<P>
+<B>Note:</B>
+
+<P>
+Typing the name of the new F0 extractor shows how to use it in more detailed manner.
+
+<P>
+<BR> <HR>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html196"
+  HREF="node9.html">Comparison of the new F0 extractor and the defaul method</A>
+<UL>
+<LI><A NAME="tex2html197"
+  HREF="node10.html">Default analysis parameter of the new F0 extractor (*)</A>
+</UL></UL>
+<!--End of Table of Child-Links-->
+<HR>
+<A NAME="tex2html194"
+  HREF="node9.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html188"
+  HREF="gettingStartedV40_006b.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html182"
+  HREF="node7.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html190"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html192"
+  HREF="node32.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> <BR>
+<B> Next:</B> <A NAME="tex2html195"
+  HREF="node9.html">Comparison of the new</A>
+<B>Up:</B> <A NAME="tex2html189"
+  HREF="gettingStartedV40_006b.html">Getting started with STRAIGHT</A>
+<B> Previous:</B> <A NAME="tex2html183"
+  HREF="node7.html">Reading and writing audio</A>
+
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Hideki Kawahara <BR>
+2007-05-05</I>
+</ADDRESS>
+</BODY>
+</HTML>

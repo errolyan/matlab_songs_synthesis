@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Parameter: groupDelaySpatialBandWidth (*)</TITLE>
+<META NAME="description" CONTENT="Parameter: groupDelaySpatialBandWidth (*)">
+<META NAME="keywords" CONTENT="gettingStartedV40_006b">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="gettingStartedV40_006b.css">
+
+<LINK REL="previous" HREF="node23.html">
+<LINK REL="up" HREF="node18.html">
+<LINK REL="next" HREF="node25.html">
+</HEAD>
+
+<BODY bgcolor=#ffffe7>
+<HR>
+<A NAME="tex2html432"
+  HREF="node25.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html426"
+  HREF="node18.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html422"
+  HREF="node23.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html428"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html430"
+  HREF="node32.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> <BR>
+<B> Next:</B> <A NAME="tex2html433"
+  HREF="node25.html">groupDelaySpatialBandWidth = 7Hz</A>
+<B>Up:</B> <A NAME="tex2html427"
+  HREF="node18.html">Group delay parameters (*)</A>
+<B> Previous:</B> <A NAME="tex2html423"
+  HREF="node23.html">Parameter: groupDelayRandomizeCornerFrequency (*)</A>
+<BR> <P>
+
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION00091300000000000000">
+Parameter: groupDelaySpatialBandWidth (*)</A>
+</H3>
+The default value of this parameter is 70 Hz.
+This parameter defines the coarseness of the
+group delay trajectory along the frequency axis.
+The uncertainty relation between temporal resolution and
+frequency resolution introduces constraint,
+that makes energy to spread temporally
+when this parameter decreases.
+This parameter is used to control this temporal spread as
+(a kind of) side effect.
+This control is implemented as a moving averaging
+on the frequency axis.
+The following examples show effects when
+this parameter is one tenth and ten times of the
+default value.
+The group delay dispersion is also set 2ms here to
+illustrate effects more salient.
+<PRE>prminS.groupDelayStandardDeviation=2;
+prminS.groupDelaySpatialBandWidth=700;
+sy700 = exstraightsynth(f0raw,n3sgram*0+100,ap*0-80,fs,prminS);
+</PRE>
+
+<P>
+The effects are not salient.
+The temporal spread is somewhat small.
+
+<DIV ALIGN="CENTER"><A NAME="wv700"></A><A NAME="260"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 14:</STRONG>
+Waveform of the excitation source signal when the spatial frequency
+bandwidth is 700Hz.</CAPTION>
+<TR><TD><IMG
+ WIDTH="544" HEIGHT="476" BORDER="0"
+ SRC="img14.png"
+ ALT="\begin{figure}\begin{center}
+\psbox[size=12cm]{images/wv700.eps}\end{center}\end{figure}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+The spectrographic display looks clearly different from the default case.
+A cloud like time-frequency spread of energy found in default case
+does not exist in this representation.
+The energy trajectory along the frequency axis looks smoother.
+
+<DIV ALIGN="CENTER"><A NAME="sg700"></A><A NAME="267"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 15:</STRONG>
+Spectrogram of the excitation source signal when the spatial frequency
+bandwidth is 700Hz.</CAPTION>
+<TR><TD><IMG
+ WIDTH="544" HEIGHT="431" BORDER="0"
+ SRC="img15.png"
+ ALT="\begin{figure}\begin{center}
+\psbox[size=12cm]{images/sg700.eps}\end{center}\end{figure}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+
+<BR> <HR>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html434"
+  HREF="node25.html">groupDelaySpatialBandWidth = 7Hz</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+<A NAME="tex2html432"
+  HREF="node25.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html426"
+  HREF="node18.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html422"
+  HREF="node23.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html428"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html430"
+  HREF="node32.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> <BR>
+<B> Next:</B> <A NAME="tex2html433"
+  HREF="node25.html">groupDelaySpatialBandWidth = 7Hz</A>
+<B>Up:</B> <A NAME="tex2html427"
+  HREF="node18.html">Group delay parameters (*)</A>
+<B> Previous:</B> <A NAME="tex2html423"
+  HREF="node23.html">Parameter: groupDelayRandomizeCornerFrequency (*)</A>
+
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Hideki Kawahara <BR>
+2007-05-05</I>
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Reading default analysis parameters</TITLE>
+<META NAME="description" CONTENT="Reading default analysis parameters">
+<META NAME="keywords" CONTENT="gettingStartedV40_006b">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="gettingStartedV40_006b.css">
+
+<LINK REL="next" HREF="node15.html">
+<LINK REL="previous" HREF="node8.html">
+<LINK REL="up" HREF="gettingStartedV40_006b.html">
+<LINK REL="next" HREF="node12.html">
+</HEAD>
+
+<BODY bgcolor=#ffffe7>
+<HR>
+<A NAME="tex2html235"
+  HREF="node12.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html229"
+  HREF="gettingStartedV40_006b.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html223"
+  HREF="node10.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html231"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html233"
+  HREF="node32.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> <BR>
+<B> Next:</B> <A NAME="tex2html236"
+  HREF="node12.html">Default values in source</A>
+<B>Up:</B> <A NAME="tex2html230"
+  HREF="gettingStartedV40_006b.html">Getting started with STRAIGHT</A>
+<B> Previous:</B> <A NAME="tex2html224"
+  HREF="node10.html">Default analysis parameter of</A>
+<BR> <P>
+
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00070000000000000000">
+Reading default analysis parameters</A>
+</H1>
+STRAIGHT has many preset parameters in its analysis and synthesis procedures.
+It is recommended to use preset default values, because they are
+optimized for general use.
+However, access and control procedures are provided to enable
+customization by the users to meet their special needs.
+This section introduces a way how to get preset values.
+
+<P>
+Assume that the working directory is set to the same directory 
+in the previous section.
+Please input the following commands. <PRE>[x,fs]=wavread('vaiueo2d.wav');
+[f0raw,ap,prmF0]=exstraightsource(x,fs);
+[n3sgram,prmP]=exstraightspec(x,f0raw,fs);
+[sy,prmS] = exstraightsynth(f0raw,n3sgram,ap,fs);
+</PRE>
+This does the same analysis and re-synthesis task.
+Important difference is that this set of commands provide
+readouts of preset parameters.
+They are stored in three structure variables
+(<TT>prmF0, prmP, prmS</TT>).
+The preset values stored in these structured variables can be reviewed
+by simply typing their variable names in the Matlab command window.
+The following  sections introduces those preset values.
+
+<P>
+<BR> <HR>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html237"
+  HREF="node12.html">Default values in source information extraction</A>
+<LI><A NAME="tex2html238"
+  HREF="node13.html">Default values in spectral information extraction</A>
+<LI><A NAME="tex2html239"
+  HREF="node14.html">Default values in synthesis</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+<A NAME="tex2html235"
+  HREF="node12.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html229"
+  HREF="gettingStartedV40_006b.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html223"
+  HREF="node10.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html231"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html233"
+  HREF="node32.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> <BR>
+<B> Next:</B> <A NAME="tex2html236"
+  HREF="node12.html">Default values in source</A>
+<B>Up:</B> <A NAME="tex2html230"
+  HREF="gettingStartedV40_006b.html">Getting started with STRAIGHT</A>
+<B> Previous:</B> <A NAME="tex2html224"
+  HREF="node10.html">Default analysis parameter of</A>
+
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Hideki Kawahara <BR>
+2007-05-05</I>
+</ADDRESS>
+</BODY>
+</HTML>

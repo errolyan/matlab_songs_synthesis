@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!-- XML file produced from file: morphingWithSTRAIGHTe.tex
+     using Hyperlatex v 2.8 (c) Otfried Cheong
+     on Emacs 21.2.1, Mon Nov  7 05:20:37 2005 -->
+<head>
+<title>Morphing with STRAIGHT -- Morphing with STRAIGHT parameter and location information</title>
+
+<style type="text/css">
+.maketitle { align : center }
+div.abstract { margin-left: 20%; margin-right: 10%; }
+h3.abstract  { align : center }
+div.verse, div.quote, div.quotation {
+  margin-left : 10%; 
+  margin-right : 10%;
+}
+dt {font-weight: bold}
+</style>
+</head>
+<body bgcolor="#ffffe6">
+<table width="100%" cellpadding="0" cellspacing="2"><tr>
+<td bgcolor="#99ccff"><a href="morphingWithSTRAIGHTe_21.html"><img border="0" alt="Morphing with STRAIGHT parameters and all anchor information" src="next.png"/></a></td><td bgcolor="#99ccff"><a href="morphingWithSTRAIGHTe_17.html"><img border="0" alt="Step by step implementation of morphing function: I" src="up.png"/></a></td><td bgcolor="#99ccff"><a href="morphingWithSTRAIGHTe_19.html"><img border="0" alt="Morphing in STRAIGHT parameter domain without side information" src="previous.png"/></a></td><td align="center" bgcolor="#99ccff" width="100%"><b>Morphing with STRAIGHT parameter and location information</b></td><td bgcolor="#99ccff" align="center"><a href="morphingWithSTRAIGHTe_28.html">Contents</a></td><td bgcolor="#99ccff" align="center"><a href="morphingWithSTRAIGHTe_27.html">Index</a></td></tr></table>
+<h2>Morphing with STRAIGHT parameter and location information</h2>
+<p>The next extension is time alignment.
+Frequency axis alignment is not introduced at this stage.
+It is interesting to observe that synthesized sounds sound reasonably
+natural even with this incomplete morphing.
+The morphing function at this stage is implemented as
+<tt>timeAlignedDirectSTRAIGHTmorphing</tt>.
+The first parameter and the second parameter represents M-objects to be morphed.
+The third parameter represents the morphing rate that is amount of the second component
+to be mixed (sum of this rate and the amount of the first component is constrained to be one).
+The last component defines mixing axis.
+Currently <tt>linear</tt> and <tt>log</tt> are provided.
+</p><pre>
+mObjectdmy = timeAlignedDirectSTRAIGHTmorphing(neutralHai,angryHai,0.5,'log');
+</pre>
+<p>The morphed time axis by this procedure is similar to that produced by the final form.
+A piecewise linear interpolation is used to implement mapping
+between two M-objects' time axes using location information of anchor points.
+The following plot shows F0 trajectories for different
+morphing rates (red line: 0, blue line: 0.5 and green line: 1).
+</p><div class="quote"><p>
+<img src="alignedF0.png"  /></p></div>
+<p>The following figure shows morphed STRAIGHT spectrum.
+Formant trajectories look closer to that of natural ones than the previous morphing function without time alignment.
+</p><div class="quote"><p>
+<img src="alignedMixSgramLog.png"  /></p></div>
+<p>Similarly, the M-object resulted by this morphing can be used to generate morphed speech
+sound.
+<a href="alignedMixSTRAIGHTlog.wav">The morphed speech sound by time aligned STRAIGHT spectrogram</a>sounds closer to the natural ones than the previous examples without time alignment.
+However, when linear interpolation is used, the morphed STRAIGHT spectrogram
+still shows doubled formant trajectories.
+</p><div class="quote"><p>
+<img src="alignedMixSgramLinear.png"  /></p></div>
+<a href="alignedMixSTRAIGHTlinear.wav">The linearly morphed speech</a>also sounds more natural than that made without time alignment.
+<p>This morphing interpolates anchor points based on their correspondence.
+This interpolation results in moving of those points.
+The following commands display relocated anchor points on 
+morphed STRAIGHT spectrogram.
+</p><pre>
+displayMobject(mObjectdmy,'anchorTimeLocation','alignedLinSum');
+axis([0 283 0 7000])
+</pre>
+<p>This interpolation is implemented using linear interpolation.
+(It may be better to use ERB axis for interpolation when differences between
+anchor point frequencies are large.)
+The following figure shows relocated anchor points on
+morphed STRAIGHT spectrogram.
+Note that these moved anchor points are not suitably corresponding to 
+characteristic spectral features on the morphed STRAIGHT spectrogram.
+</p><div class="quote"><p>
+<img src="alignedMixAnchorLinear.png"  /></p></div>
+<hr /><address>Hideki Kawahara, November 7, 2005</address><br />
+<table width="100%" cellpadding="0" cellspacing="2"><tr>
+<td bgcolor="#99ccff"><a href="morphingWithSTRAIGHTe_21.html"><img border="0" alt="Morphing with STRAIGHT parameters and all anchor information" src="next.png"/></a></td><td bgcolor="#99ccff"><a href="morphingWithSTRAIGHTe_17.html"><img border="0" alt="Step by step implementation of morphing function: I" src="up.png"/></a></td><td bgcolor="#99ccff"><a href="morphingWithSTRAIGHTe_19.html"><img border="0" alt="Morphing in STRAIGHT parameter domain without side information" src="previous.png"/></a></td><td align="center" bgcolor="#99ccff" width="100%"><b>Morphing with STRAIGHT parameter and location information</b></td><td bgcolor="#99ccff" align="center"><a href="morphingWithSTRAIGHTe_28.html">Contents</a></td><td bgcolor="#99ccff" align="center"><a href="morphingWithSTRAIGHTe_27.html">Index</a></td></tr></table></body></html>

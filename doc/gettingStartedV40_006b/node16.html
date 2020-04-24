@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Using other F0 extractors or re-doing analysis</TITLE>
+<META NAME="description" CONTENT="Using other F0 extractors or re-doing analysis">
+<META NAME="keywords" CONTENT="gettingStartedV40_006b">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="gettingStartedV40_006b.css">
+
+<LINK REL="previous" HREF="node15.html">
+<LINK REL="up" HREF="node15.html">
+<LINK REL="next" HREF="node17.html">
+</HEAD>
+
+<BODY bgcolor=#ffffe7>
+<HR>
+<A NAME="tex2html305"
+  HREF="node17.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html299"
+  HREF="node15.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html295"
+  HREF="node15.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html301"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html303"
+  HREF="node32.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> <BR>
+<B> Next:</B> <A NAME="tex2html306"
+  HREF="node17.html">Controlling synthesis parameters</A>
+<B>Up:</B> <A NAME="tex2html300"
+  HREF="node15.html">Changing default values for</A>
+<B> Previous:</B> <A NAME="tex2html296"
+  HREF="node15.html">Changing default values for</A>
+<BR> <P>
+
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00081000000000000000">
+Using other F0 extractors or re-doing analysis</A>
+</H2>
+Sometimes, F0 extraction fails.
+This failure introduces noticable degradation in resynthesized speech.
+It also introduces errors in spectrum estimation because of pitch synchronous nature of 
+STRAIGHT spectral analysis.
+To alleviate this problem, you may manually edit the F0 information 
+or you may use the other F0 ectractors.
+Once a fixed F0 information is ready and is stored in a variable, for example in 'f0fix', 
+you can calculate the aperiodicity index using the following function.
+<PRE>
+ap=exstraightAPind(x,fs,f0fix);
+</PRE>
+
+<P>
+<HR>
+<A NAME="tex2html305"
+  HREF="node17.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html299"
+  HREF="node15.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html295"
+  HREF="node15.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html301"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html303"
+  HREF="node32.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> <BR>
+<B> Next:</B> <A NAME="tex2html306"
+  HREF="node17.html">Controlling synthesis parameters</A>
+<B>Up:</B> <A NAME="tex2html300"
+  HREF="node15.html">Changing default values for</A>
+<B> Previous:</B> <A NAME="tex2html296"
+  HREF="node15.html">Changing default values for</A>
+
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Hideki Kawahara <BR>
+2007-05-05</I>
+</ADDRESS>
+</BODY>
+</HTML>

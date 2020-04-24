@@ -1,0 +1,175 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Getting started with STRAIGHT in command mode</TITLE>
+<META NAME="description" CONTENT="Getting started with STRAIGHT in command mode">
+<META NAME="keywords" CONTENT="gettingStartedV40_006b">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="gettingStartedV40_006b.css">
+
+<LINK REL="next" HREF="node1.html">
+</HEAD>
+
+<BODY bgcolor=#ffffe7>
+<HR>
+<A NAME="tex2html30"
+  HREF="node1.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up_g.png"> 
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev_g.png"> 
+<A NAME="tex2html26"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html28"
+  HREF="node32.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> <BR>
+<B> Next:</B> <A NAME="tex2html31"
+  HREF="node1.html">Contents</A>
+<BR> <P>
+
+<!--End of Navigation Panel-->
+
+<P>
+<H1 ALIGN="CENTER">Getting started with STRAIGHT in command mode</H1>
+<DIV>
+
+<P ALIGN="CENTER"><STRONG>Hideki Kawahara</STRONG></P>
+<P ALIGN="CENTER"><I>Faculty of Systems Engineering, Wakayama University, Japan
+</I></P>
+<P ALIGN="CENTER"><STRONG>5 May 2007</STRONG></P>
+</DIV>
+<BR> <HR>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"></A>
+
+<UL>
+<LI><A NAME="tex2html32"
+  HREF="node1.html">Contents</A>
+<LI><A NAME="tex2html33"
+  HREF="node2.html">Introduction</A>
+<UL>
+<LI><A NAME="tex2html34"
+  HREF="node3.html">Highly reliable new F0 extractor and notes on aperiodicity (*)</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html35"
+  HREF="node4.html">Installing STRAIGHT</A>
+<LI><A NAME="tex2html36"
+  HREF="node5.html">Required environment</A>
+<LI><A NAME="tex2html37"
+  HREF="node6.html">Using default parameters</A>
+<UL>
+<LI><A NAME="tex2html38"
+  HREF="node7.html">Reading and writing audio files</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html39"
+  HREF="node8.html">Using a new F0 extractor for STRAIGHT</A>
+<UL>
+<LI><A NAME="tex2html40"
+  HREF="node9.html">Comparison of the new F0 extractor and the defaul method</A>
+<UL>
+<LI><A NAME="tex2html41"
+  HREF="node10.html">Default analysis parameter of the new F0 extractor (*)</A>
+</UL>
+</UL>
+<BR>
+<LI><A NAME="tex2html42"
+  HREF="node11.html">Reading default analysis parameters</A>
+<UL>
+<LI><A NAME="tex2html43"
+  HREF="node12.html">Default values in source information extraction</A>
+<LI><A NAME="tex2html44"
+  HREF="node13.html">Default values in spectral information extraction</A>
+<LI><A NAME="tex2html45"
+  HREF="node14.html">Default values in synthesis</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html46"
+  HREF="node15.html">Changing default values for analysis and synthesis</A>
+<UL>
+<LI><A NAME="tex2html47"
+  HREF="node16.html">Using other F0 extractors or re-doing analysis</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html48"
+  HREF="node17.html">Controlling synthesis parameters</A>
+<UL>
+<LI><A NAME="tex2html49"
+  HREF="node18.html">Group delay parameters (*)</A>
+<UL>
+<LI><A NAME="tex2html50"
+  HREF="node19.html">Parameter: groupDelayStandardDeviation (*)</A>
+<UL>
+<LI><A NAME="tex2html51"
+  HREF="node20.html">groupDelayStandardDeviation=0.5 ms (default )</A>
+<LI><A NAME="tex2html52"
+  HREF="node21.html">groupDelayStandardDeviation=2 ms</A>
+<LI><A NAME="tex2html53"
+  HREF="node22.html">groupDelayStandardDeviation=6 ms</A>
+</UL>
+<LI><A NAME="tex2html54"
+  HREF="node23.html">Parameter: groupDelayRandomizeCornerFrequency (*)</A>
+<LI><A NAME="tex2html55"
+  HREF="node24.html">Parameter: groupDelaySpatialBandWidth (*)</A>
+<UL>
+<LI><A NAME="tex2html56"
+  HREF="node25.html">groupDelaySpatialBandWidth = 7Hz</A>
+</UL>
+</UL>
+<LI><A NAME="tex2html57"
+  HREF="node26.html">How to assign the lower F0 limit for synthetic speech (*)</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html58"
+  HREF="node27.html">How to run your batch programs (UNIX and OS X) (*)</A>
+<LI><A NAME="tex2html59"
+  HREF="node28.html">Bibliography</A>
+<LI><A NAME="tex2html60"
+  HREF="node29.html">GUI for STRAIGHT</A>
+<LI><A NAME="tex2html61"
+  HREF="node30.html">Notes on STRAIGHT parameters</A>
+<UL>
+<LI><A NAME="tex2html62"
+  HREF="node31.html">Aperiodicity Index</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html63"
+  HREF="node32.html">Index</A>
+<LI><A NAME="tex2html64"
+  HREF="node33.html">About this document ...</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+<A NAME="tex2html30"
+  HREF="node1.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up_g.png"> 
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev_g.png"> 
+<A NAME="tex2html26"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html28"
+  HREF="node32.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> <BR>
+<B> Next:</B> <A NAME="tex2html31"
+  HREF="node1.html">Contents</A>
+
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Hideki Kawahara <BR>
+2007-05-05</I>
+</ADDRESS>
+</BODY>
+</HTML>

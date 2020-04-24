@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Reading and writing audio files</TITLE>
+<META NAME="description" CONTENT="Reading and writing audio files">
+<META NAME="keywords" CONTENT="gettingStartedV40_006b">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="gettingStartedV40_006b.css">
+
+<LINK REL="previous" HREF="node6.html">
+<LINK REL="up" HREF="node6.html">
+<LINK REL="next" HREF="node8.html">
+</HEAD>
+
+<BODY bgcolor=#ffffe7>
+<HR>
+<A NAME="tex2html180"
+  HREF="node8.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html174"
+  HREF="node6.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html170"
+  HREF="node6.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html176"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html178"
+  HREF="node32.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> <BR>
+<B> Next:</B> <A NAME="tex2html181"
+  HREF="node8.html">Using a new F0</A>
+<B>Up:</B> <A NAME="tex2html175"
+  HREF="node6.html">Using default parameters</A>
+<B> Previous:</B> <A NAME="tex2html171"
+  HREF="node6.html">Using default parameters</A>
+<BR> <P>
+
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00051000000000000000">
+Reading and writing audio files</A>
+</H2>
+Output rms level of the STRAIGHT synthesis procedure <TT>exstraightsynth</TT>
+is normalized to -22dB (relative to maximum level of
+signed 16bit integer).
+The rms value is calculated using (roughly speaking) voiced part only.
+(This is due to some historical reason.)
+Consequently, it is necessary to reduce the amplitude to meet
+requirements of the Matlab <TT>wavwrite</TT> function when
+storing it in WAVE format.
+The following command is an example implemented in the
+old GUI-STRAIGHT.
+<PRE>wavwrite(sy/32768,fs,16,'test.wav');
+</PRE>
+<P>
+STRAIGHT also supports input and output of (a subset of) AIFF format. No scaling is necessary, because the writing function
+<TT>aiffwrite</TT> writes 1 in Matlab as 1 LSB in the output file.
+<PRE>aiffwrite(sy,fs,16,'test.aiff');
+</PRE>
+<P>
+(This scaling introduced a bug in STRAIGHT spectral analysis. The analysis procedure was optimized to signals in a 16bit integer range. This bug is fixed in the analysis function <TT>exstraightspec</TT> of this STRAIGHT release (V40).)
+
+<P>
+
+<HR>
+<A NAME="tex2html180"
+  HREF="node8.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html174"
+  HREF="node6.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html170"
+  HREF="node6.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html176"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html178"
+  HREF="node32.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> <BR>
+<B> Next:</B> <A NAME="tex2html181"
+  HREF="node8.html">Using a new F0</A>
+<B>Up:</B> <A NAME="tex2html175"
+  HREF="node6.html">Using default parameters</A>
+<B> Previous:</B> <A NAME="tex2html171"
+  HREF="node6.html">Using default parameters</A>
+
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Hideki Kawahara <BR>
+2007-05-05</I>
+</ADDRESS>
+</BODY>
+</HTML>

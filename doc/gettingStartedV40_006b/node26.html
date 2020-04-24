@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>How to assign the lower F0 limit for synthetic speech (*)</TITLE>
+<META NAME="description" CONTENT="How to assign the lower F0 limit for synthetic speech (*)">
+<META NAME="keywords" CONTENT="gettingStartedV40_006b">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="gettingStartedV40_006b.css">
+
+<LINK REL="previous" HREF="node18.html">
+<LINK REL="up" HREF="node17.html">
+<LINK REL="next" HREF="node27.html">
+</HEAD>
+
+<BODY bgcolor=#ffffe7>
+<HR>
+<A NAME="tex2html457"
+  HREF="node27.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html451"
+  HREF="node17.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html447"
+  HREF="node25.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html453"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html455"
+  HREF="node32.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> <BR>
+<B> Next:</B> <A NAME="tex2html458"
+  HREF="node27.html">How to run your</A>
+<B>Up:</B> <A NAME="tex2html452"
+  HREF="node17.html">Controlling synthesis parameters</A>
+<B> Previous:</B> <A NAME="tex2html448"
+  HREF="node25.html">groupDelaySpatialBandWidth = 7Hz</A>
+<BR> <P>
+
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00092000000000000000">
+How to assign the lower F0 limit for synthetic speech (*)</A>
+</H2>
+Acceptable lowest fundamental frequency in re-synthesis stage
+is introduced by the limited data length introduced by the
+FFT buffer size.
+It is a function of the FFT buffer length in samples and the sampling frequency.
+Current implementation sets the buffer length two times longer than the
+fundamental period of this lower F0 limit. 
+(The default value is 40&nbsp;Hz.)
+Users using recent versions (STRAIGHTv40_005b and later) can set this
+lower limit F0 explicitly.<A NAME="tex2html21"
+  HREF="footnode.html#foot287"><SUP>1</SUP></A>
+<P>
+The following example shows how to assign the lower F0 limit to 20&nbsp;Hz.
+It uses the optional structured variable for controlling synthesis conditions.
+<PRE>
+prm.lowestF0 = 20;
+[sy,prmS] = exstraightsynth(f0raw,n3sgram,ap,fs,prm);
+</PRE>
+
+<P>
+Explanation how synthesis stage responded to the assigned conditions
+can be retrieved by assigning a optional structured variable as one
+of outputs of the synthesis routine.
+The return values and their explanations are the following.
+<PRE>
+prmS.statusReport
+</PRE>
+
+<P>
+<DL>
+<DT><STRONG>ok </STRONG></DT>
+<DD>Synthesis is completed successfully.
+</DD>
+<DT><STRONG>Minimum synthesized F0 exceeded the lower limit</STRONG></DT>
+<DD>Synthesis is terminated without producing result.
+</DD>
+<DT><STRONG>The FFT length was inconsistent and replaced</STRONG></DT>
+<DD>Synthesis is completed using the updated FFT buffer length.
+The length is calculated based on the
+newly assigned lowestF0 parameter.
+</DD>
+<DT><STRONG>Frequency axix mapping function is not consistent with lowestF0</STRONG></DT>
+<DD>Synthesis is completed using the updated FFT buffer length.
+The length is calculated based on the
+newly assigned lowestF0 parameter.
+The inconsistent frequency mapping table assigned is ignored.
+</DD>
+</DL>
+
+<P>
+
+<HR>
+<A NAME="tex2html457"
+  HREF="node27.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html451"
+  HREF="node17.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html447"
+  HREF="node25.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html453"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html455"
+  HREF="node32.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> <BR>
+<B> Next:</B> <A NAME="tex2html458"
+  HREF="node27.html">How to run your</A>
+<B>Up:</B> <A NAME="tex2html452"
+  HREF="node17.html">Controlling synthesis parameters</A>
+<B> Previous:</B> <A NAME="tex2html448"
+  HREF="node25.html">groupDelaySpatialBandWidth = 7Hz</A>
+
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Hideki Kawahara <BR>
+2007-05-05</I>
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!-- XML file produced from file: morphingWithSTRAIGHTe.tex
+     using Hyperlatex v 2.8 (c) Otfried Cheong
+     on Emacs 21.2.1, Mon Nov  7 05:20:37 2005 -->
+<head>
+<title>Morphing with STRAIGHT -- Duration control of segments</title>
+
+<style type="text/css">
+.maketitle { align : center }
+div.abstract { margin-left: 20%; margin-right: 10%; }
+h3.abstract  { align : center }
+div.verse, div.quote, div.quotation {
+  margin-left : 10%; 
+  margin-right : 10%;
+}
+dt {font-weight: bold}
+</style>
+</head>
+<body bgcolor="#ffffe6">
+<table width="100%" cellpadding="0" cellspacing="2"><tr>
+<td bgcolor="#99ccff"><a href="morphingWithSTRAIGHTe_25.html"><img border="0" alt="Formant frequency shift of each segment" src="next.png"/></a></td><td bgcolor="#99ccff"><a href="morphingWithSTRAIGHTe_23.html"><img border="0" alt="Applications of (partial) morphing" src="up.png"/></a></td><td bgcolor="#99ccff"><img alt="" src="blank.png"/></td><td align="center" bgcolor="#99ccff" width="100%"><b>Duration control of segments</b></td><td bgcolor="#99ccff" align="center"><a href="morphingWithSTRAIGHTe_28.html">Contents</a></td><td bgcolor="#99ccff" align="center"><a href="morphingWithSTRAIGHTe_27.html">Index</a></td></tr></table>
+<h2>Duration control of segments</h2>
+<p>A Japanese vowel sequence /aiueo/ is used as an example here.
+The first step is to create a morphing object as in the previous sections.
+</p><pre>
+[x,fs]=wavread('../STRAIGHTV40_003b/vaiueo2d.wav');
+aiueoObj = createMobject
+aiueoObj = updateFieldOfMobject(aiueoObj,'waveform',x);
+aiueoObj = updateFieldOfMobject(aiueoObj,'samplingFrequency',fs);
+</pre>
+<p>Let's inspect its STRAIGHT spectrogram.
+The following commands calculate and display the STRAIGHT spectrogram of the
+vowel sequence.
+</p><pre>
+aiueoObj = executeSTRAIGHTanalysisM(aiueoObj);
+displayMobject(aiueoObj,'anchorFrequency','aiueoObj');
+axis([0 794 0 5000])
+</pre>
+<div class="quote"><p>
+<img src="sgramaiueoObjPlain.png"  /></p></div>
+<p>It is straightforward to use it to define segments
+when a phonemic labeling of this vowel sequence is available.
+Let's put segment boundaries by visually inspecting the STRAIGHT spectrogram here.
+It may be reasonable to set segment boundaries at the following locations;
+116,   240,   400,   500,   610,   710 ms.
+Please set frequency anchoring points to 1000Hz for every temporal anchoring points
+because duration is the only attribute we are interested.
+</p><pre>
+rawanch =[116 -10;240 1000;400 1000;500 1000;610 1000;710 -10];
+</pre>
+<p>The negative frequency values at 116 ms and 710 ms were set to indicate that they are voicing boundaries.
+The following commands set the anchoring information to the morphing object under study.
+The following commands also display the anchoring points with the STRAIGHT spectrogram.
+</p><pre>
+aiueoObj = setAnchorFromRawAnchor(aiueoObj,rawanch)
+displayMobject(aiueoObj,'anchorFrequency','aiueoObj');
+axis([0 794 0 5000])
+</pre>
+<div class="quote"><p>
+<img src="sgramaiueoObj.png"  /></p></div>
+<p>Segment durations are calculated by differentiating temporal locations of the anchoring points.
+</p><pre>
+&gt;&gt; diff(aiueoObj.anchorTimeLocation)'
+
+ans =
+
+   124   160   100   110   100
+</pre>
+<p>As a manipulation example, let's make a synthetic speech that has three times longer
+/i/ and /e/ segments, the second and the fourth segment.
+It is necessary to make a dummy morphing object that has desired segment durations.
+The following commands do it.
+</p><pre>
+modaiueoObj = aiueoObj;
+modaiueoObj.anchorTimeLocation = cumsum([116;124 ;  160*3  ; 100 ;  110*3;   100]);
+</pre>
+<p>It is necessary to adjust internal target objects' size to be consistent with the modified temporal information.
+The function <tt>fixDummyObjectSize</tt> does it.
+</p><pre>
+modaiueoObj = fixDummyObjectSize(modaiueoObj,aiueoObj);
+</pre>
+<p>It will be useful to write a function to do this sequence of commands in a single action
+including creation of the dummy object and manipulation of durations.</p>
+<p>The next step is to define a structured variable to set
+the partial morphing rates.
+Only the 'coordinate' field has to be set one and other fields have to be set zero,
+because duration (time axis of the time-frequency coordinate) is the attribute to be manipulated.
+The following commands set morphing rates to the fields of a variable <tt>mRate</tt>.
+</p><pre>
+mRate.F0 =0;
+mRate.aperiodicity=0;
+mRate.spectrum=0;
+mRate.coordinate=1;
+</pre>
+<p>The following commands do necessary morphing to do the duration control.
+The manipulated morphing object is also displayed.
+</p><pre>
+mixAIUf0s0a0c1 = timeFrequencySTRAIGHTmorphing(aiueoObj,modaiueoObj,mRate,'log');
+displayMobject(mixAIUf0s0a0c1,'anchorFrequency','mixAIUf0s0a0c1');
+axis([0 1334 0 5000])
+</pre>
+<div class="quote"><p>
+<img src="sgrammixAIUf0s0a0c1.png"  /></p></div>
+<p>The manipulated spectrogram clearly shows that the second and the fourth segments are dilated in time.
+The following command generates a synthetic speech from this manipulated morphing object.
+</p><pre>
+syAIUmixf0s0a0c1 = executeSTRAIGHTsynthesisM(mixAIUf0s0a0c1);
+</pre>
+<p>The original and the manipulated speech sounds are linked below.
+Please check how it sounds.
+It is interesting to find the fourth segment does not sound dilated three times in time
+(at least for a native Japanese listener, me.....).
+</p><ul><li><a href="vaiueo2d.wav">Original speech (vaiueo2d.wav) </a>
+</li><li><a href="syAIUmixf0s0a0c1.wav">Durationally manipulated synthetic speech (syAIUmixf0s0a0c1.wav) </a>
+</li></ul>
+<hr /><address>Hideki Kawahara, November 7, 2005</address><br />
+<table width="100%" cellpadding="0" cellspacing="2"><tr>
+<td bgcolor="#99ccff"><a href="morphingWithSTRAIGHTe_25.html"><img border="0" alt="Formant frequency shift of each segment" src="next.png"/></a></td><td bgcolor="#99ccff"><a href="morphingWithSTRAIGHTe_23.html"><img border="0" alt="Applications of (partial) morphing" src="up.png"/></a></td><td bgcolor="#99ccff"><img alt="" src="blank.png"/></td><td align="center" bgcolor="#99ccff" width="100%"><b>Duration control of segments</b></td><td bgcolor="#99ccff" align="center"><a href="morphingWithSTRAIGHTe_28.html">Contents</a></td><td bgcolor="#99ccff" align="center"><a href="morphingWithSTRAIGHTe_27.html">Index</a></td></tr></table></body></html>

@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!-- XML file produced from file: morphingWithSTRAIGHTe.tex
+     using Hyperlatex v 2.8 (c) Otfried Cheong
+     on Emacs 21.2.1, Mon Nov  7 05:20:36 2005 -->
+<head>
+<title>Morphing with STRAIGHT -- Example: anchor selection</title>
+
+<style type="text/css">
+.maketitle { align : center }
+div.abstract { margin-left: 20%; margin-right: 10%; }
+h3.abstract  { align : center }
+div.verse, div.quote, div.quotation {
+  margin-left : 10%; 
+  margin-right : 10%;
+}
+dt {font-weight: bold}
+</style>
+</head>
+<body bgcolor="#ffffe6">
+<table width="100%" cellpadding="0" cellspacing="2"><tr>
+<td bgcolor="#99ccff"><img alt="" src="blank.png"/></td><td bgcolor="#99ccff"><a href="morphingWithSTRAIGHTe_11.html"><img border="0" alt="Attributes necessary for morphing" src="up.png"/></a></td><td bgcolor="#99ccff"><a href="morphingWithSTRAIGHTe_13.html"><img border="0" alt="Required attributes for anchoring points" src="previous.png"/></a></td><td align="center" bgcolor="#99ccff" width="100%"><b>Example: anchor selection</b></td><td bgcolor="#99ccff" align="center"><a href="morphingWithSTRAIGHTe_28.html">Contents</a></td><td bgcolor="#99ccff" align="center"><a href="morphingWithSTRAIGHTe_27.html">Index</a></td></tr></table>
+<h3>Example: anchor selection</h3>
+<p>This section illustrates how to set anchor points using a real example.
+A built in Matlab function <tt>ginput</tt> is employed for interactive selection.
+An object information display function <tt>displayMobject</tt> is designed to
+assist this interactive anchor point setting.
+The following command displays a STRAIGHT spectrogram of a M-object.
+(The speech material is the same one that was used in ICASSP'2003 paper.)
+</p><pre>
+displayMobject(angryHai,'spectrogram','angryHai');
+</pre>
+<p>The next step is to set an appropriate view referring information
+displayed on the title line of the display.
+Then, by invoking function <tt>ginput</tt> the initial part of the interactive anchor point selection is initiated.
+</p><pre>
+axis([0 300 0 7000])
+rawanch  = ginput
+</pre>
+<p>The information display with cross hair cursor is shown in the following figure.
+</p><div class="quote"><p>
+<img src="sg0.png"  /></p></div>
+<p>You can set anchor points by clicking mouse button when cross hair cursor
+is located at each proper point.
+Please continue this operation while candidate anchor points are left unmarked.
+This operation is terminated when a key on the keyboard is pressed.
+This termination operation gives the following output for example.
+</p><pre>
+&gt;&gt; rawanch = ginput
+
+rawanch =
+
+   1.0e+03 *
+
+    0.0266   -0.5424
+    0.2934   -0.6243
+    0.0916    0.7471
+    0.0923    1.1360
+    0.0916    2.3026
+    0.0923    3.2851
+    0.0916    5.8845
+    0.1621    0.7061
+    0.1635    1.5658
+    0.1621    2.2617
+    0.1628    3.4079
+    0.1635    5.8231
+    0.1994    0.6038
+    0.1987    1.7909
+    0.1994    2.4868
+    0.1987    3.3874
+    0.2008    5.7822
+    0.2499    0.4196
+    0.2506    1.9751
+    0.2492    2.4664
+    0.2506    3.2237
+</pre>
+<p>The left column represents time (in ms) and the
+right column represents frequency ( in Hz).
+Boundaries of speech segments are marked by
+clicking outside of frequency range (negative frequency).</p>
+<p>Assigning these values to one variable,
+anchor points are aligned by sorting using time information as the key.
+The following commands do those steps.
+</p><pre>
+[dm1,indsrt] = sort(rawanch(:,1));
+rawanch(indsrt,:)
+
+ans =
+
+   1.0e+03 *
+
+    0.0266   -0.5424
+    0.0916    2.3026
+    0.0916    5.8845
+    0.0916    0.7471
+    0.0923    1.1360
+    0.0923    3.2851
+    0.1621    0.7061
+    0.1621    2.2617
+    0.1628    3.4079
+    0.1635    1.5658
+    0.1635    5.8231
+    0.1987    1.7909
+    0.1987    3.3874
+    0.1994    0.6038
+    0.1994    2.4868
+    0.2008    5.7822
+    0.2492    2.4664
+    0.2499    0.4196
+    0.2506    1.9751
+    0.2506    3.2237
+    0.2934   -0.6243
+</pre>
+<p>By inspecting the results, temporal anchor points
+are found to be set 27ms, 92ms, 162ms, 199ms, 250ms, 293ms.
+Frequency anchor points have to be assigned to these temporal
+locations.</p>
+<p>As indicated in this example,
+usually more than two frequency anchor points share
+the same time location.
+However, this process is error prone.
+A post processing function <tt>setAnchorFromRawAnchor</tt> is provided to clean up
+manually set anchor points to meet this condition.
+The following commands processes the example given above
+using this post processing function.
+The function updates (in this case assigns) anchor point information to
+a M-object.
+The results can be checked by typing relevant field name with the
+M-object name.
+</p><pre>
+ &gt;&gt; angryHai = setAnchorFromRawAnchor(angryHai,rawanch)
+ &gt;&gt; angryHai.anchorTimeLocation
+
+ans =
+
+   26.6129
+   91.8684
+  162.7880
+  199.4240
+  250.0576
+  293.4332
+  
+ &gt;&gt; angryHai.anchorFrequency
+
+ans =
+
+   1.0e+03 *
+
+   -0.5424         0         0         0         0         0         0         0         0
+    0.7471    1.1360    2.3026    3.2851    5.8845         0         0         0         0
+    0.7061    1.5658    2.2617    3.4079    5.8231         0         0         0         0
+    0.6038    1.7909    2.4868    3.3874    5.7822         0         0         0         0
+    0.4196    1.9751    2.4664    3.2237         0         0         0         0         0
+   -0.6243         0         0         0         0         0         0         0         0
+</pre>
+<p>These anchor information are also displayed using
+the display function for M-object.
+</p><pre>
+displayMobject(angryHai,'anchorTimeLocation','angryHai');
+axis([0 300 0 7000])
+</pre>
+<div class="quote"><p>
+<img src="sgmark.png"  /></p></div>
+<p>The above example is 'anger' speech.
+Let's perform the similar procedure on 'neutral' speech.
+It yields the following.
+</p><pre>
+&gt;&gt; neutralHai.anchorTimeLocation
+
+ans =
+
+   53.2834
+   84.8502
+  132.6613
+  166.8779
+  209.2921
+  239.9194
+
+&gt;&gt; neutralHai.anchorFrequency
+
+ans =
+
+   1.0e+03 *
+
+   -0.6038         0         0         0         0         0         0         0         0
+    0.7471    1.3202    2.4050    3.7558    5.8231         0         0         0         0
+    0.5219    1.8728    2.3845    3.8787    5.8231         0         0         0         0
+    0.3787    2.1184    3.2032    3.9196    5.7617         0         0         0         0
+    0.3173    2.1594    3.2000    3.7968         0         0         0         0         0
+   -0.5219         0         0         0         0         0         0         0         0
+
+&gt;&gt; displayMobject(neutralHai,'anchorTimeLocation','neutralHai');
+&gt;&gt; axis([0 250 0 7000])
+</pre>
+<div class="quote"><p>
+<img src="sgmarkN.png"  /></p></div>
+<hr /><address>Hideki Kawahara, November 7, 2005</address><br />
+<table width="100%" cellpadding="0" cellspacing="2"><tr>
+<td bgcolor="#99ccff"><img alt="" src="blank.png"/></td><td bgcolor="#99ccff"><a href="morphingWithSTRAIGHTe_11.html"><img border="0" alt="Attributes necessary for morphing" src="up.png"/></a></td><td bgcolor="#99ccff"><a href="morphingWithSTRAIGHTe_13.html"><img border="0" alt="Required attributes for anchoring points" src="previous.png"/></a></td><td align="center" bgcolor="#99ccff" width="100%"><b>Example: anchor selection</b></td><td bgcolor="#99ccff" align="center"><a href="morphingWithSTRAIGHTe_28.html">Contents</a></td><td bgcolor="#99ccff" align="center"><a href="morphingWithSTRAIGHTe_27.html">Index</a></td></tr></table></body></html>
